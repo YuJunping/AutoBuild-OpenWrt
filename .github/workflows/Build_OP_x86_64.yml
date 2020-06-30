@@ -16,8 +16,8 @@ on:
   #schedule:
   #  - cron: 0 8 * * 5
   
-  #watch:
-  #  types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         #开启Shadowsocks
         cd openwrt
-        sed -i '5s/#//' feeds.conf.default
+        sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
 
     - name: Update & Install feeds
       working-directory: ./openwrt
